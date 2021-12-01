@@ -45,15 +45,20 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         tap_code(KC_VOLU);
     } else {
         tap_code(KC_VOLD);
-    }return false;
+    }
+    return false;
+}
+
+void keyboard_post_init_user(void) {
+    eeconfig_init();
 }
 
 #ifdef OLED_ENABLE
 
 void oled_task_user(void) {
-#    ifdef OCEAN_DREAM_ENABLE
-        render_stars()
-#    endif
+  #ifdef OCEAN_DREAM_ENABLE
+        render_stars();
+  #endif
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -61,12 +66,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_LCTL:
         case KC_RCTL:
 #ifdef OCEAN_DREAM_ENABLE
-             is_calm = (record->event.pressed) ? true : false;
-			}
-    
-	return true;
-}
-
+            is_calm = (record->event.pressed) ? true : false;
 #endif
+            break;
+    }
+    return true;
+}
 
 #endif
