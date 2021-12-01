@@ -21,20 +21,3 @@ WPM_ENABLE = yes
 OCEAN_DREAM_ENABLE = yes
 
 # Enter lower-power sleep mode when on the ChibiOS idle thread
-OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
-ifeq ($(strip $(OLED_ENABLE)), yes)
-    #... your code here...
-
-    ifdef OCEAN_DREAM_ENABLE
-        ifeq ($(strip $(OCEAN_DREAM_ENABLE)), yes)
-            SRC += ocean_dream.c
-            OPT_DEFS += -DOCEAN_DREAM_ENABLE
-        endif
-    endif
-    ifndef OCEAN_DREAM_ENABLE
-        SRC += ocean_dream.c
-        OPT_DEFS += -DOCEAN_DREAM_ENABLE
-    endif
-endif
-
-
