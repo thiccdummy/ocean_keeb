@@ -53,9 +53,24 @@ void keyboard_post_init_user(void) {
 }
 
 #ifdef OLED_ENABLE
-#endif
 
 void oled_task_user(void) {
 #    ifdef OCEAN_DREAM_ENABLE
+        render_stars()
 #    endif
 }
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_LCTL:
+        case KC_RCTL:
+#ifdef OCEAN_DREAM_ENABLE
+            is_calm (record->event.pressed) ? true : false;
+			}
+    
+	return true;
+}
+
+#endif
+
+#endif
